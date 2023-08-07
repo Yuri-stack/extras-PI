@@ -52,5 +52,13 @@
       "id": 2,
       "nome": "Refrigerantes"
     }
+  ],
+  "postagens":[
+    {
+      "id": 1,
+      "titulo": "Título da Postagem",
+      "texto": "Texto da Postagem",
+      "tema":"Tema da Postagem"
+    }
   ]
 }

@@ -5,7 +5,7 @@ import { listar } from '../../services/Services'
 import { Produto } from '../../models/Produto'
 
 function Produtos() {
-    const { adicionarProduto, removerProduto } = useContext(Context)
+    const { adicionarProduto, removerProduto, quantidadeItems } = useContext(Context)
 
     const [produtos, setProdutos] = useState<Produto[]>([])
 
@@ -20,9 +20,11 @@ function Produtos() {
     useEffect(() => {
         listarProdutos()
     }, [])
-
+ 
     return (
         <div className='flex flex-col'>
+            <div>Quantidade no Carrinho: {quantidadeItems}</div>
+
             <div className='my-5'>
                 {
                     produtos.map((item) => {
