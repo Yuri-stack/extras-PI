@@ -26,13 +26,25 @@ export function Provider({ children }: ContextProviderProps) {
         setItems(state => [...state, produto])
     }
 
-    function removerProduto(produtoId: number) {
-        // Usamos a função filter, com ela fazemos um Filtro no Array usando uma condição
-        const coffeeExistsInCart = items.filter(
-            (item) => item.id !== produtoId)
+    // Versão para Apagar todos os itens de um Produto
+    // function removerProduto(produtoId: number) {
+    //     // Usamos a função filter, com ela fazemos um Filtro no Array usando uma condição
+    //     const coffeeExistsInCart = items.filter(
+    //         (item) => item.id !== produtoId)
 
-        // Atualiza o State
-        setItems(coffeeExistsInCart)
+    //     // Atualiza o State
+    //     setItems(coffeeExistsInCart)
+    // }
+
+    // Versão para remover a quantidade de um produto especifico
+    function removerProduto(produtoId: number) {
+        const indice = items.findIndex(items => items.id === produtoId)
+        let novoCart = [...items]
+
+        if(indice >= 0){
+            novoCart.splice(indice, 1)
+            setItems(novoCart)
+        }
     }
 
     function limparCart() {
