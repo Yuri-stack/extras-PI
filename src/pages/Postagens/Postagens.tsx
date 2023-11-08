@@ -19,7 +19,7 @@ function Postagens() {
     }, [])
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col items-center'>
             <div className='my-5'>
                 {
                     postagens.map((item) => {

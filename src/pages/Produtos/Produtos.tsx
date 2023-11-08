@@ -1,12 +1,10 @@
-import { useContext, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Context } from '../../context/Context'
+import { useState, useEffect } from 'react'
+import CardProdutos from '../../components/CardProdutos/CardProdutos'
+
 import { listar } from '../../services/Services'
 import { Produto } from '../../models/Produto'
 
 function Produtos() {
-    const { adicionarProduto, removerProduto, quantidadeItems } = useContext(Context)
-
     const [produtos, setProdutos] = useState<Produto[]>([])
 
     async function listarProdutos() {
@@ -20,29 +18,21 @@ function Produtos() {
     useEffect(() => {
         listarProdutos()
     }, [])
- 
+
     return (
         <div className='flex flex-col'>
-            <div>Quantidade no Carrinho: {quantidadeItems}</div>
-
-            <div className='my-5'>
-                {
-                    produtos.map((item) => {
-                        return (
-                            <>
-                                <div key={item.id}>{item.nome}</div>
-                                <button onClick={() => adicionarProduto(item)}>Adicionar ao Carrinho</button>
-                                <button onClick={() => removerProduto(item.id)}>Remover do Carrinho</button>
-                            </>
-                        )
-                    })
-                }
+            <div className="flex justify-center w-full my-4">
+                <div className="container flex flex-col">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {
+                            produtos.map(produto => (
+                                <CardProdutos key={produto.id} item={produto} />
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
-
-            <Link to="/carrinho">
-                <button>Finalizar Compra</button>
-            </Link>
-        </ div>
+        </ div >
     )
 }
 

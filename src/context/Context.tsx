@@ -21,22 +21,12 @@ export function Provider({ children }: ContextProviderProps) {
 
     const quantidadeItems = items.length
 
+    // Essa sintaxe guarda as info anteriores do State e atualiza com os novos dados(objetos)
     function adicionarProduto(produto: Produto) {
-        // Essa sintaxe guarda as info anteriores do State e atualiza com os novos dados(objetos)
         setItems(state => [...state, produto])
     }
 
-    // Versão para Apagar todos os itens de um Produto
-    // function removerProduto(produtoId: number) {
-    //     // Usamos a função filter, com ela fazemos um Filtro no Array usando uma condição
-    //     const coffeeExistsInCart = items.filter(
-    //         (item) => item.id !== produtoId)
-
-    //     // Atualiza o State
-    //     setItems(coffeeExistsInCart)
-    // }
-
-    // Versão para remover a quantidade de um produto especifico
+    // Remove a quantidade de um produto especifico
     function removerProduto(produtoId: number) {
         const indice = items.findIndex(items => items.id === produtoId)
         let novoCart = [...items]

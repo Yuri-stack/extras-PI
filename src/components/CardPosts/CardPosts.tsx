@@ -7,7 +7,7 @@ interface CardPosts {
 }
 
 function CardPosts({ post }: CardPosts) {
-    // Inicia o campo de Comentarios com um Comentário Generico
+    // Inicia o campo de Comentarios com um Comentário Genérico
     const [comentarios, setComentarios] = useState([
         'Post muito bacana, hein?! 👏👏'
     ])
@@ -28,32 +28,49 @@ function CardPosts({ post }: CardPosts) {
     }
 
     return (
-        <div>
-            <h1>{post.titulo}</h1>
-            <h2>{post.texto}</h2>
+        <>
+            <div className='m-4 border-2 border-gray-400  lg:border-gray-400 w-[620px] rounded-lg'>
+                <div className="max-w-sm w-full lg:max-w-full lg:flex">
+                    <div className=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                        <div className="mb-2">
+                            <div className="text-gray-900 font-bold text-xl mb-2">{post.titulo}</div>
+                            <p className="text-gray-700 text-base">{post.texto}</p>
+                        </div>
+                    </div>
+                </div>
 
-            <form onSubmit={criarNovoComentario} className='flex flex-col'>
-                <strong>Deixe seu feedback</strong>
-                <textarea
-                    name='comment'
-                    placeholder='Deixe seu comentário'
-                    value={novoComentarioTexto}
-                    onChange={atualizarNovoComentario}
-                    required
-                />
-                <footer>
-                    <button type="submit">Publicar</button>
-                </footer>
-            </form>
+                <hr />
 
-            <div>
+                {/* Parte para inserir o Comentário */}
+                <form onSubmit={criarNovoComentario} className='flex flex-col p-4'>
+                    <strong>Deixe seu feedback</strong>
+                    
+                    <textarea
+                    className='mt-4'
+                        name='comment'
+                        placeholder='Deixe seu comentário'
+                        value={novoComentarioTexto}
+                        onChange={atualizarNovoComentario}
+                        required
+                    />
+                    <footer>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-2 py-2 px-4 rounded-full"
+                            type="submit">Publicar</button>
+                    </footer>
+                </form>
+            </div>
+
+            <div className='m-4'>
+
+                <h2 className='mb-4 font-bold'>Comentários</h2>
+
                 {comentarios.map(comentario => {
                     return (
                         <Comentarios conteudo={comentario} />
                     )
                 })}
             </div>
-        </div>
+        </>
     )
 }
 
